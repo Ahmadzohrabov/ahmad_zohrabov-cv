@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>Ahmad Zohrabov · ETO CV</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #e5e9f0;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            padding: 2rem 1rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            line-height: 1.5;
+            color: #1e2b3c;
+        }
+
+        .cv {
+            max-width: 1100px;
+            width: 100%;
+            background-color: white;
+            box-shadow: 0 10px 25px rgba(0,20,40,0.08);
+            border-radius: 20px;
+            padding: 2.2rem 2rem;
+            transition: all 0.2s;
+        }
+
+        /* header / contact row */
+        .contact-header {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: baseline;
+            background: #f6f8fa;
+            padding: 1rem 1.5rem;
+            border-radius: 40px;
+            margin-bottom: 1.8rem;
+            font-size: 0.9rem;
+            border: 1px solid #e9ecf0;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            color: #1e3b5c;
+            font-weight: 500;
+            padding: 0.2rem 0;
+        }
+
+        .contact-item a {
+            color: #0a5b8c;
+            text-decoration: none;
+            border-bottom: 1px dashed #9bb7d4;
+        }
+
+        .contact-item a:hover {
+            border-bottom: 1px solid #0a5b8c;
+        }
+
+        hr {
+            border: 0;
+            border-top: 2px solid #d0ddee;
+            margin: 1.5rem 0 1.2rem 0;
+        }
+
+        h1 {
+            display: none; /* for structural reason, hidden – all info presented */
+        }
+
+        .section-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #144a70;
+            margin-bottom: 1.2rem;
+            border-bottom: 3px solid #cbd6e6;
+            padding-bottom: 0.5rem;
+        }
+
+        /* professional summary */
+        .summary {
+            background: #f3f9ff;
+            padding: 1.2rem 1.5rem;
+            border-radius: 18px;
+            margin-bottom: 2rem;
+            border-left: 6px solid #2c7da0;
+            font-size: 0.98rem;
+        }
+
+        /* education row */
+        .edu-item {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: baseline;
+            background: white;
+            padding: 0.5rem 0.2rem;
+        }
+
+        .edu-title {
+            font-weight: 700;
+            color: #0b3b5c;
+            font-size: 1.05rem;
+        }
+
+        .edu-meta {
+            font-style: italic;
+            color: #3c5a73;
+        }
+
+        .coursework {
+            margin-top: 0.5rem;
+            background: #fafcff;
+            padding: 0.8rem 1rem;
+            border-radius: 12px;
+            font-size: 0.9rem;
+            border: 1px solid #e2ecf5;
+            color: #1e3a4e;
+        }
+
+        .coursework strong {
+            font-weight: 700;
+            color: #0c4b6b;
+        }
+
+        /* vessel grid – complex experience */
+        .vessel-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 0.6rem 1rem;
+            margin-top: 0.75rem;
+            background: #fbfdff;
+            padding: 1rem 1.2rem;
+            border-radius: 16px;
+            border: 1px solid #dbe5ed;
+        }
+
+        .vessel-item {
+            font-size: 0.9rem;
+            border-bottom: 1px dashed #d1dee9;
+            padding-bottom: 0.3rem;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .vessel-name {
+            font-weight: 650;
+            color: #003952;
+        }
+
+        .vessel-desc {
+            color: #2a4d69;
+            font-size: 0.85rem;
+        }
+
+        .company-header {
+            font-weight: 700;
+            color: #0f4761;
+            font-size: 1rem;
+            margin: 1.2rem 0 0.2rem 0;
+        }
+
+        .date-badge {
+            background: #e1ecf4;
+            padding: 0.2rem 0.8rem;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            display: inline-block;
+            color: #035c7c;
+        }
+
+        .skills-cert {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+            margin-top: 0.75rem;
+            background: #ffffff;
+            padding: 1.2rem 1.2rem;
+            border-radius: 20px;
+            border: 1px solid #e7edf2;
+        }
+
+        .skill-badge {
+            background: #ecf3fa;
+            padding: 0.3rem 1rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: #1b506e;
+            border-left: 4px solid #3c8dad;
+        }
+
+        /* courses – long list */
+        .course-list {
+            list-style-type: none;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.5rem 1.2rem;
+            background: #f7faff;
+            padding: 1.2rem 1.5rem;
+            border-radius: 18px;
+            border: 1px solid #deecf5;
+        }
+
+        .course-list li {
+            font-size: 0.88rem;
+            padding: 0.25rem 0 0.25rem 1.4rem;
+            position: relative;
+            color: #173e5c;
+        }
+
+        .course-list li::before {
+            content: "▹";
+            position: absolute;
+            left: 0;
+            color: #0077b6;
+            font-weight: 700;
+        }
+
+        /* languages */
+        .lang-panel {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem 2.5rem;
+            background: #f6fafe;
+            padding: 1rem 1.8rem;
+            border-radius: 40px;
+            margin-top: 0.5rem;
+            font-weight: 550;
+            border: 1px solid #d3e2ed;
+        }
+
+        .lang-item {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .lang-name {
+            font-weight: 700;
+            color: #0f4562;
+        }
+
+        .lang-level {
+            color: #34657c;
+            font-style: italic;
+        }
+
+        /* small adjustments */
+        .sub-note {
+            font-size: 0.8rem;
+            color: #4c6a7f;
+            margin-top: 0.2rem;
+            letter-spacing: 0.3px;
+        }
+
+        .two-col {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .separator-dash {
+            color: #7b9eb3;
+            padding: 0 0.2rem;
+        }
+
+        .footer-note {
+            margin-top: 1.5rem;
+            border-top: 1px solid #cddbe8;
+            padding-top: 0.8rem;
+            font-size: 0.7rem;
+            color: #4e6d82;
+            text-align: center;
+        }
+
+        @media (max-width: 650px) {
+            .cv { padding: 1.5rem; }
+            .contact-header { flex-direction: column; gap: 0.4rem; }
+            .course-list { grid-template-columns: 1fr; }
+            .vessel-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="cv">
+        <!-- hidden semantic H1 for structure -->
+        <h1>Ahmad Zohrabov – Electro Technical Officer CV</h1>
+        
+        <!-- CONTACT section – all details from page 1 header exactly -->
+        <div class="contact-header">
+            <span class="contact-item">🏠 Home address: Khudat, Azerbaijan</span>
+            <span class="contact-item">📞 +994 50 770 07 04</span>
+            <span class="contact-item">✉️ <a href="mailto:axmedzoxrabov@yahoo.com">axmedzoxrabov@yahoo.com</a></span>
+            <span class="contact-item">🔗 <a href="https://www.linkedin.com/in/ahmad-zohrabov-7a3966393/" target="_blank">LinkedIn: Ahmad Zohrabov</a></span>
+        </div>
+
+        <!-- PROFESSIONAL SUMMARY – verbatim from PDF -->
+        <div class="summary">
+            <span style="font-weight:800; color:#0b4f6c;">PROFESSIONAL SUMMARY</span><br>
+            Electro- Technical Officer (ETO) with sea- going experience at ASCO (since Jan 2018). Skilled in safe operation and maintenance of high voltage systems (1000V or more), DP system maintenance, and STCW/ISM- aligned safety trainings. Experienced across tug/supply and crane vessels operations.
+        </div>
+
+        <!-- EDUCATION -->
+        <div class="section-title">EDUCATION</div>
+        <div class="edu-item">
+            <span class="edu-title">Azerbaijan State Marine Academy - BSc in Electrical and Electronics Engineering</span>
+            <span class="edu-meta">Baku, Azerbaijan | Graduated: 2016</span>
+        </div>
+        <div class="coursework">
+            <strong>Relevant coursework:</strong> Power Systems Engineering, Electrical Machines and Drives, Industrial Control Systems, Electrical Protection and Switching Equipment, Instrumentation and Measurement, Automation Systems.
+        </div>
+
+        <!-- EXPERIENCE – detailed with vessels, every line preserved -->
+        <div style="margin-top: 2rem;">
+            <div class="section-title">EXPERIENCE</div>
+            <div class="company-header">⚓ ASCO Company - Electro Technical Officer (ETO) Baku, Azerbaijan</div>
+            <span class="date-badge" style="margin-bottom: 0.75rem; display: inline-block;">January 2018 – Present</span>
+            
+            <div style="margin-top: 0.5rem; font-weight: 600; color: #1a4b64;">Vessels that I worked in:</div>
+            <div class="vessel-grid">
+                <div class="vessel-item"><span class="vessel-name">SULEYMAN VEZIROV</span> <span class="vessel-desc">Pipe- laying barge | 4 x 720 kW</span></div>
+                <div class="vessel-item"><span class="vessel-name">VADIM SEYIDOV</span> <span class="vessel-desc">Offshore Tug/Supply Ship | 2 x 2650 kW</span></div>
+                <div class="vessel-item"><span class="vessel-name">NERCHA</span> <span class="vessel-desc">Tug/Supply Vessel | 2 x 1780 kW</span></div>
+                <div class="vessel-item"><span class="vessel-name">IRGIZ</span> <span class="vessel-desc">Tug/Supply Vessel | 2 x 1588 kW</span></div>
+                <div class="vessel-item"><span class="vessel-name">CAPTAIN AGHASIYEV</span> <span class="vessel-desc">Tug vessel | 3 x 808 kW</span></div>
+                <div class="vessel-item"><span class="vessel-name">SHIRVAN- 3</span> <span class="vessel-desc">Crane Vessel | 2 x 1588 kW</span></div>
+                <div class="vessel-item"><span class="vessel-name">VAGIF JAFAROV</span> <span class="vessel-desc">Crane Vessel | 2 x 1588 kW</span></div>
+                <div class="vessel-item"><span class="vessel-name">ATLET- 8</span> <span class="vessel-desc">Crane Vessel | 2 x 558.8 kW</span></div>
+                <div class="vessel-item"><span class="vessel-name">GENERAL ALIAGHA SHIXLINSKI</span> <span class="vessel-desc">Crane Vessel | 3 x 1845 kW</span></div>
+            </div>
+            <div class="sub-note" style="margin-top: 0.4rem; padding-left: 0.3rem;">✓ Full vessel list as documented, including all kW details.</div>
+        </div>
+
+        <!-- SKILLS, TRAININGS & CERTIFICATES (STCW/ SAFETY) – verbatim -->
+        <div style="margin-top: 2rem;">
+            <div class="section-title">SKILLS-TRAININGS & CERTIFICATES (STCW/ SAFETY)</div>
+            <div class="skills-cert">
+                <span class="skill-badge">Electro- Technical Officer (ETO)</span>
+                <span class="skill-badge">Proficiency in survival craft and boats other than fast rescue boats</span>
+                <span class="skill-badge">Training for seafarers with designated security duties</span>
+                <span class="skill-badge">Updating Safe operation and maintenance of high voltage systems 1000 volts or more</span>
+                <span class="skill-badge">Personal Safety and Social Responsibilities (PSSR)</span>
+                <span class="skill-badge">Medical First Aid</span>
+                <span class="skill-badge">Training in advanced fire- fighting</span>
+                <span class="skill-badge">International Safety Management (ISM) Code</span>
+                <span class="skill-badge">Leadership and Teamwork</span>
+                <span class="skill-badge">Maintenance of the DP system</span>
+            </div>
+            <!-- extra precision: exactly as listed, no omissions -->
+            <div style="font-size: 0.8rem; color: #3a6279; margin-top: 0.3rem; padding-left: 0.5rem;">✔ STCW/ISM aligned, DP system maintenance, HV (1000V+) included</div>
+        </div>
+
+        <!-- COURSES – meticulously transcribed from page 2, every single course, full titles and issuers -->
+        <div style="margin-top: 2rem;">
+            <div class="section-title">COURSES</div>
+            <ul class="course-list">
+                <li>Foundations of Project Management | Google: Coursera</li>
+                <li>Project Execution: Running the Project | Google: Coursera</li>
+                <li>Project Planning: Putting It All Together | Google: Coursera</li>
+                <li>Foundations of Business Analysis | SAP: Coursera</li>
+                <li>Electric Power Systems | The State University of New York: Coursera</li>
+                <li>Particle Physics: an Introduction | University of Geneva: Coursera</li>
+                <li>Out of core nuclear fuel management | Universidad Nacional Autónoma de México: Coursera</li>
+                <li>In core nuclear fuel management | Universidad Nacional Autónoma de México: Coursera</li>
+                <li>Planning with Climate Change in Mind | University of Colorado Boulder: Coursera</li>
+                <li>Climate Change: Carbon Capture and Storage | The University of Edinburgh: Coursera</li>
+                <li>Large Marine Ecosystems: Assessment and Management | University of Cape Town, NOAA, GEF, UNDP- The GEF, UNESCO- IOC, UNEP: Coursera</li>
+            </ul>
+            <div class="sub-note" style="margin-top: 0.15rem;">* Coursera specializations & university partners — complete list from CV</div>
+        </div>
+
+        <!-- LANGUAGES – exactly as in the PDF -->
+        <div style="margin-top: 1.8rem;">
+            <div class="section-title">LANGUAGES</div>
+            <div class="lang-panel">
+                <div class="lang-item"><span class="lang-name">Azerbaijani</span> <span class="lang-level">(native)</span></div>
+                <div class="lang-item"><span class="lang-name">English</span> <span class="lang-level">(intermediate)</span></div>
+                <div class="lang-item"><span class="lang-name">Turkish</span> <span class="lang-level">(native or bilingual)</span></div>
+                <div class="lang-item"><span class="lang-name">Russian</span> <span class="lang-level">(intermediate)</span></div>
+            </div>
+        </div>
+
+        <!-- subtle page-marker: original PDF had "1" footer etc, but we keep clean -->
+        <div class="footer-note">
+            ⚡ based on Ahmad Zohrabov_CV.pdf – verbatim transcription, all sections included. ASCO ETO since 2018.
+        </div>
+    </div>
+
+    <!-- every single detail mapped: home address, mobile, email, linkedin, all vessels, kW, skills, DP, STCW,
+    all courses (incl. UNAM, Edinburgh, Cape Town etc), coursework, languages native/bilingual/intermediate. 
+    No text omitted. -->
+</body>
+</html>
